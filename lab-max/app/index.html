@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html ng-app="cowsayApp">
+  <head>
+    <title> Cowsay-Angular Lab </title>
+  </head>
+  <body>
+    <main ng-controller="CowController">
+      <section>
+        <h1> {{cowCtrl.title}} </h1>
+        <input type="text" ng-model="cowCtrl.text">
+        <button ng-click="cowCtrl.revertText.unshift(cowCtrl.text)"> Click to populate second cow! </button>
+        <pre>
+          <p>
+            {{cowCtrl.cowTalk(cowCtrl.text)}}
+          </p>
+        </pre>
+      </section>
+      <section>
+        <button ng-click="cowCtrl.revertText.shift()"> Click to revert text update! </button>
+        <pre>
+          <p>
+            {{cowCtrl.cowPopulate(cowCtrl.revertText[0])}}
+          </p>
+        </pre>
+      </section>
+    </main>
+  </body>
+</html>
