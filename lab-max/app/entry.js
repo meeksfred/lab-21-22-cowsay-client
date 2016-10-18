@@ -14,7 +14,7 @@ function CowController($log, $scope){
   let cowCtrl = $scope.cowCtrl = {};
 
   cowCtrl.title = 'Cowsay Lab 2.0, Using Angular';
-  cowCtrl.revertText = [];
+  cowCtrl.revertTexts = [];
 
   cowCtrl.cowTalk = function(input){
     $log.debug('cowCtrl.cowTalk');
