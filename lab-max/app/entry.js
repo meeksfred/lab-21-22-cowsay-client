@@ -22,7 +22,7 @@ function CowController($log, $scope){
   };
 
   cowCtrl.cowPopulate = function(input){
-    $log.debug('cowCtrl.cowPopulate', cowCtrl.revertText);
+    $log.debug('cowCtrl.cowPopulate');
     return '\n' + cowsay.say({text: input || 'give me texts'});
   };
 }
