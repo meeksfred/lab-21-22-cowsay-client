@@ -22,8 +22,6 @@
           <select
           ng-class="{'app-yellow': cowForm.$valid}"
           ng-model="cowCtrl.activeCow"
-          required ng-minlength="5"
-          ng-maxlength="15"
           >
             <option
             ng-repeat="cow in cowCtrl.cowChars"
@@ -34,14 +32,10 @@
           </select>
           <button
           ng-class="{'app-green': cowForm.$valid}"
-          required ng-minlength="5"
-          ng-maxlength="15"
           type="submit"
           > Click to make second cow speak! </button>
           <button
           ng-class="{'app-red': cowForm.$valid}"
-          required ng-minlength="5"
-          ng-maxlength="15"
           type="button"
           ng-click="cowCtrl.revertText()"
           > Click to revert text update! </button>
