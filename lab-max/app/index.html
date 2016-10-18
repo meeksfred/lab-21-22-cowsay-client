@@ -4,11 +4,48 @@
     <title> Cowsay-Angular Lab </title>
   </head>
   <body>
-    <main ng-controller="CowController">
+    <main ng-controller="CowController as cowCtrl" ng-init="cowCtrl.activeCow = 'default'">
       <section>
         <h1> {{cowCtrl.title}} </h1>
-        <input type="text" ng-model="cowCtrl.text">
-        <button ng-click="cowCtrl.revertTexts.unshift(cowCtrl.text)"> Click to populate second cow! </button>
+        <form
+        novalidate
+        name="cowForm"
+        ng-submit="cowCtrl.cowPopulate(cowCtrl.text)"
+        ng-class="{'app-pink': cowForm.$invalid}"
+        >
+          <input
+          type="text"
+          ng-model="cowCtrl.text"
+          required ng-minlength="5"
+          ng-maxlength="15"
+          >
+          <select
+          ng-class="{'app-yellow': cowForm.$valid}"
+          ng-model="cowCtrl.activeCow"
+          required ng-minlength="5"
+          ng-maxlength="15"
+          >
+            <option
+            ng-repeat="cow in cowCtrl.cowChars"
+            value="{{cow}}"
+            >
+              {{cow}}
+            </option>
+          </select>
+          <button
+          ng-class="{'app-green': cowForm.$valid}"
+          required ng-minlength="5"
+          ng-maxlength="15"
+          type="submit"
+          > Click to make second cow speak! </button>
+          <button
+          ng-class="{'app-red': cowForm.$valid}"
+          required ng-minlength="5"
+          ng-maxlength="15"
+          type="button"
+          ng-click="cowCtrl.revertText()"
+          > Click to revert text update! </button>
+        </form>
         <pre>
           <p>
             {{cowCtrl.cowTalk(cowCtrl.text)}}
@@ -16,10 +53,20 @@
         </pre>
       </section>
       <section>
-        <button ng-click="cowCtrl.revertTexts.shift()"> Click to revert text update! </button>
+        <i ng-if="!cowCtrl.newText" class="fa fa-moon-o"></i>
+        <i ng-if="!cowCtrl.newText" class="fa fa-angle-double-left"></i>
+        <i ng-if="!cowCtrl.newText" class="fa fa-hand-spock-o"></i>
+        <i ng-if="!cowCtrl.newText" class="fa fa-angle-double-right"></i>
+        <i ng-if="!cowCtrl.newText" class="fa fa-moon-o"></i>
         <pre>
-          <p>
-            {{cowCtrl.cowPopulate(cowCtrl.revertTexts[0])}}
+          <p
+          ng-class="{'app-circle': cowCtrl.newText}"
+          ng-show="cowCtrl.newText"
+          >
+            {{cowCtrl.newText}}
+          </p>
+          <p ng-hide="cowCtrl.newText">
+            WHERE IS THE SECOND COW!!!
           </p>
         </pre>
       </section>
