@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html ng-app="cowsayApp">
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title> Cowsay-Angular Lab </title>
   </head>
   <body>
     <main ng-controller="CowController as cowCtrl" ng-init="cowCtrl.activeCow = 'default'">
       <section>
         <h1> {{cowCtrl.title}} </h1>
+        <h3> {{cowCtrl.intro}} </h3>
         <form
         novalidate
         name="cowForm"
@@ -14,6 +17,8 @@
         ng-class="{'app-pink': cowForm.$invalid}"
         >
           <input
+          class="form-control"
+          placeholder="Say something!"
           type="text"
           ng-model="cowCtrl.text"
           required ng-minlength="5"
@@ -31,14 +36,16 @@
             </option>
           </select>
           <button
+          class="btn btn-default"
           ng-class="{'app-green': cowForm.$valid}"
           type="submit"
-          > Click to make second cow speak! </button>
+          > {{cowCtrl.submitText}} </button>
           <button
+          class="btn btn-default"
           ng-class="{'app-red': cowForm.$valid}"
           type="button"
           ng-click="cowCtrl.revertText()"
-          > Click to revert text update! </button>
+          > {{cowCtrl.undoText}} </button>
         </form>
         <pre>
           <p>
@@ -60,7 +67,7 @@
             {{cowCtrl.newText}}
           </p>
           <p ng-hide="cowCtrl.newText">
-            WHERE IS THE SECOND COW!!!
+            {{cowCtrl.secondCowText}}
           </p>
         </pre>
       </section>

@@ -15,6 +15,9 @@ module.exports = {
     }),
     new ExtractTextPlugin('bundle.css'),
   ],
+  sassLoader: {
+    includePaths: [`${__dirname}/app/scss/lib`],
+  },
   module: {
     loaders: [
       {
